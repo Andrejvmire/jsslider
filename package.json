@@ -11,12 +11,9 @@
     "test": "jest --watch",
     "dev": "webpack --config webpack.dev.config.js -w"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Andrey Yatsenko",
-  "bugs": {
-
-  },
+  "bugs": {},
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.6",
