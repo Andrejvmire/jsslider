@@ -1,5 +1,5 @@
 export default abstract class AbstractPublisher implements IPublisher {
-    protected _subscribers: ISubscriber[];
+    protected _subscribers: ISubscriber[] = [];
 
     attach(subscriber: ISubscriber): void {
         let isExist: boolean = this._subscribers

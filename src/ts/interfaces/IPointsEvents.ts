@@ -1,9 +1,7 @@
 interface IPointsEvents {
     move(newValue: number): IPointsEvents;
 
-    next(curValue: number): IPointsEvents;
-
-    prev(curValue: number): IPointsEvents;
+    nextTo(curValue: number, nextValue: number): IPointsEvents;
 
     value: PointsResponseType;
 }

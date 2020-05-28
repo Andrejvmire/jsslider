@@ -22,7 +22,7 @@ export default class ValidatorModel {
                 }
             )
         } else {
-            result = (value > min) && (value < max);
+            result = (value >= min) && (value <= max);
             if (!result) {
                 model._result = false;
                 model.setError(`Value ${value} isn't in range: less then ${min} or more then ${max}`)

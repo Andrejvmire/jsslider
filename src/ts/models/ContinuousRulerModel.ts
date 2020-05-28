@@ -9,7 +9,7 @@ export default class ContinuousRulerModel extends AbstractPublisher implements I
         super();
         this._min =_options.ruler[0];
         this._max = _options.ruler[1];
-        this._step = _options.step;
+        this._step = _options.step || 1;
     }
 
     get value(): RulerResponseType {

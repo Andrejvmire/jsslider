@@ -9,7 +9,7 @@ export default class PointsModel extends AbstractPublisher implements IPublisher
         if (typeof points === 'number') {
             this._points = [new PointModel(points)]
         } else {
-            points.map(
+            this._points = points.map(
                 point => new PointModel(point)
             )
         }
@@ -21,6 +21,7 @@ export default class PointsModel extends AbstractPublisher implements IPublisher
                 .map(point => {
                     return point.value.point
                 })
+                .sort((a, b) => a - b)
         }
     }
 
@@ -31,31 +32,21 @@ export default class PointsModel extends AbstractPublisher implements IPublisher
                     return (Math.abs(prevValue.value.point - newValue) < Math.abs(curValue.value.point - newValue)) ? prevValue : curValue;
                 }
             )
-            .value.point = newValue;
+            .value = {point: newValue};
+        this.notify();
         return this;
     }
 
-    next(curValue: number, step: number = 1): PointsModel {
+    nextTo(curValue: number, nextValue: number): PointsModel {
         this._points
             .map(
                 item => {
                     if (item.value.point === curValue) {
-                        item.value.point = curValue + step;
+                        item.value = {point: nextValue};
                     }
                 }
             )
-        return this;
-    }
-
-    prev(curValue: number, step: number = 1): PointsModel {
-        this._points
-            .map(
-                item => {
-                    if (item.value.point === curValue) {
-                        item.value.point = curValue - step;
-                    }
-                }
-            )
+        this.notify();
         return this;
     }
 }
